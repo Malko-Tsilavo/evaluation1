@@ -1,7 +1,7 @@
 package site.easy.to.build.crm.google.model.calendar;
 
 public class EventDateTime {
-//    private String date;
+    private String date;
     private String dateTime;
 
     private String timeZone;
@@ -22,4 +22,13 @@ public class EventDateTime {
     public void setTimeZone(String timeZone) {
         this.timeZone = timeZone;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 }
