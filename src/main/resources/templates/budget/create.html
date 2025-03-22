@@ -40,7 +40,7 @@
                                 <div class="input-group">
                                     <span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
                                 </div>
-
+                            
                                 <label class="m-t-20" for="dateCreation">Date de création :</label>
                                 <div class="input-group">
                                     <input type="datetime-local" id="dateCreation" th:field="*{dateCreation}" class="form-control" required>
@@ -48,7 +48,7 @@
                                 <div class="input-group">
                                     <span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('dateCreation')}" th:errors="*{dateCreation}"></span>
                                 </div>
-
+                            
                                 <label class="m-t-20" for="montant">Montant :</label>
                                 <div class="input-group">
                                     <input type="number" step="0.01" id="montant" th:field="*{montant}" class="form-control" required>
@@ -56,9 +56,25 @@
                                 <div class="input-group">
                                     <span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('montant')}" th:errors="*{montant}"></span>
                                 </div>
-
+                            
+                                <!-- Nouveau champ pour sélectionner le Customer -->
+                                <label class="m-t-20" for="customer">Client :</label>
+                                <div class="input-group">
+                                    <select id="customer" th:field="*{customer.customerId}" class="form-control" required>
+                                        <option value="" disabled selected>-- Sélectionnez un client --</option>
+                                        <option th:each="customer : ${customers}" 
+                                                th:value="${customer.customerId}" 
+                                                th:text="${customer.name}">
+                                        </option>
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <span class="text-danger font-weight-bold" th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}"></span>
+                                </div>
+                            
                                 <button type="submit" class="btn btn-primary m-t-20">Créer le budget</button>
                             </form>
+                            
                         </div>
                     </div>
                 </div>

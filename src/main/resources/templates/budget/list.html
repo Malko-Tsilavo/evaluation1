@@ -44,7 +44,9 @@
                                                 <th>#</th>
                                                 <th>Nom</th>
                                                 <th>Montant</th>
+                                                <th>Montant Restant</th>
                                                 <th>Date de Création</th>
+                                                <th>Customer</th>
                                                 <th>Modifier</th>
                                                 <th>Supprimer</th>
                                             </tr>
@@ -54,7 +56,9 @@
                                                 <td th:text="${budget.id}"></td>
                                                 <td th:text="${budget.name}"></td>
                                                 <td th:text="${budget.montant}"></td>
+                                                <td th:text="${budget.montantRestant}"></td>
                                                 <td th:text="${budget.dateCreation}"></td>
+                                                <td th:text="${budget.customer.name}"></td>
                                                 <td><a th:href="@{/budget/update/{id}(id=${budget.id})}"><i class="fas fa-edit"></i></a></td>
                                                 <td>
                                                     <form th:action="@{/budget/delete/{id}(id=${budget.id})}" method="get">

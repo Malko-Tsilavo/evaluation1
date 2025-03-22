@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:insert="~{/general/head.html}"></div>
+    <link rel="stylesheet" th:href="@{/css/style.min.css}">
+</head>
+<body class="skin-blue fixed-layout">
+    <div id="main-wrapper">
+        <div th:insert="~{/general/header.html}"></div>
+        <div th:insert="~{/general/left-sidebar.html}"></div>
+
+        <div class="page-wrapper">
+            <div class="container-fluid">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Liste des Dépenses avec Lead</h4>
+                        <div class="table-responsive m-t-40">
+                            <table class="table table-bordered table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Montant</th>
+                                        <th>Date Dépense</th>
+                                        <th>Lead</th>
+                                        <th>Ticket</th>
+                                        <th>Budjet</th>
+                                    <tr th:each="depense : ${depenses}">
+                                        <td th:text="${depense.idDepense}"></td>
+                                        <td th:text="${depense.montant}"></td>
+                                        <td th:text="${depense.dateDepense}"></td>
+                                        <td th:text="${depense.lead != null ? depense.lead.name : 'Aucun'}"></td>
+                                        <td th:text="${depense.ticket != null ? depense.ticket.subject : 'Aucun'}"></td>
+                                        <td th:text="${depense.budget.name}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:insert="~{/general/footer.html}"></div>
+    </div>
+</body>
+</html>

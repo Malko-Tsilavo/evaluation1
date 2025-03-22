@@ -23,9 +23,6 @@ public class BudgetService {
     }
 
     public void save(Budget budget) {
-        System.out.println("Budget nom "+budget.getName());
-        System.out.println("Budget valeur "+budget.getMontant());
-        System.out.println("Budget Date et heure de creation "+budget.getDateCreation());
         budgetRepository.save(budget);
     }
 
@@ -34,6 +31,10 @@ public class BudgetService {
         return result.orElse(null);  // Retourne null si aucun budget n'est trouvé
     }
 
+    
+    public List<Budget> finBudgetsByCustomerId(int id){
+        return budgetRepository.findByCustomer(id);
+    }
     public void delete(Budget budget) {
         budgetRepository.delete(budget);
     }

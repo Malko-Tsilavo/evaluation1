@@ -494,6 +494,47 @@ CREATE TABLE IF NOT EXISTS `google_drive_file` (
   CONSTRAINT `google_drive_file_ibfk_1` FOREIGN KEY (`lead_id`) REFERENCES `trigger_lead` (`lead_id`),
   CONSTRAINT `google_drive_file_ibfk_2` FOREIGN KEY (`contract_id`) REFERENCES `trigger_contract` (`contract_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE IF NOT EXISTS `budget`(
+   budget_id INT AUTO_INCREMENT,
+   date_creation DATETIME,
+   montant DECIMAL(15,2)  ,
+   name VARCHAR(50) ,
+   montant_restant DECIMAL(15,2)  ,
+   customer_id INT UNSIGNED NOT NULL,
+   PRIMARY KEY(budget_id),
+   FOREIGN KEY(customer_id) REFERENCES customer(customer_id)
+);
+
+
+CREATE TABLE IF NOT EXISTS `depense`(
+   id_depense INT AUTO_INCREMENT,
+   montant DECIMAL(15,2),
+   date_depense DATETIME,
+   ticket_id INT UNSIGNED,  -- Correction ici
+   budget_id INT NOT NULL,
+   lead_id INT UNSIGNED,
+   PRIMARY KEY(id_depense),
+   FOREIGN KEY(ticket_id) REFERENCES trigger_ticket(ticket_id),
+   FOREIGN KEY(budget_id) REFERENCES budget(budget_id),
+   FOREIGN KEY(lead_id) REFERENCES trigger_lead(lead_id)
+);
+
+CREATE TABLE IF NOT EXISTS `taux_alerte`(
+   id_taux_alert INT AUTO_INCREMENT,
+   taux DECIMAL(4,2)  ,
+   date_declaration DATETIME,
+   PRIMARY KEY(id_taux_alert)
+);
+
+INSERT IGNORE INTO `taux_alerte` (id_taux_alert,taux, date_declaration)
+VALUES (1,50.00, '2025-03-23 10:00:00');
+
+
+
+
+
+
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

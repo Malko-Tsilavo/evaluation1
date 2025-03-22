@@ -96,7 +96,10 @@
                                     </thead>
                                     <tbody>
                                         <tr th:if="${customers != null}" th:each="customer : ${customers}">
-                                            <td th:text="${customer.customerId}"></td>
+                                            <td th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}">
+                                                <a th:href="${home + 'depenses-insert/' + customer.customerId}">
+                                                    <i th:text="${customer.customerId}">
+                                            </td>
                                             <td th:text="${customer.name}"></td>
                                             <td th:text="${customer.email}"></td>
                                             <td th:text="${customer.phone}"></td>
