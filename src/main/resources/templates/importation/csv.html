@@ -34,11 +34,7 @@
                                 <form th:action="@{/document/upload}" enctype="multipart/form-data" method="post">
                                     <div class="form-group">
                                         <label for="classType">Type de classe :</label>
-                                        <select id="classType" name="classType" class="form-control">
-                                            <option value="Contrat">Contrat</option>
-                                            <option value="Facture">Facture</option>
-                                            <option value="Rapport">Rapport</option>
-                                        </select>
+                                        <input type="text" id="classType" name="classType" class="form-control" />
                                     </div>
 
                                     <div class="form-group">
