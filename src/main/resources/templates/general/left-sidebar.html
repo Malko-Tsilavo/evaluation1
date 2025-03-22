@@ -40,7 +40,14 @@
                                 <li><a th:href="${home + 'employee/settings/email/lead'}">Lead Settings</a></li>
                                 <li><a th:href="${home + 'employee/settings/email/ticket'}">Ticket Settings</a></li>
                                 <li><a th:href="${home + 'import/csv'}">Importation</a></li>
-
+                                
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)" class="has-arrow">Budget</a>
+                            <ul class="collapse">
+                                <li><a th:href="${home + 'budget/list'}">List Budget</a></li>
+                                <li><a th:href="${home + 'budget/create'}">Create Budget</a></li>
                             </ul>
                         </li>
                     </ul>

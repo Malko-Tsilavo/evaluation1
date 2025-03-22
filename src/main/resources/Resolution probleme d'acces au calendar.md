@@ -21,3 +21,67 @@ aucune date n'est precisé
 
 my-lead:Arrangement du thymeleaf <td><a th:href="${home} + 'customer/lead/' + ${lead.leadId}"><i class="fas fa-eye"></i></a></td>
 qui était comme ceci <td><a th:href="${home + 'customer/lead/' + ${lead.leadId}"><i class="fas fa-eye"></i></a></td>
+
+Creation de la table budget
+
+Creation de la table depense
+
+Creation de la table taux_alerte
+
+Creation de l'entite Budget
+
+Creation du controller BudgetController
+
+Creation de la fonction showAllBudget
+
+Creation de la fonction showBudgetInsert
+
+Creation de la fonction insertBudget
+
+Creation de la fonction deleteBudget
+
+Creation de la fonction updateBudget
+
+Creation de la page show-budget
+
+Creation de la page insert-budget
+
+Creation de l'entite TauxAlert
+
+Creation du controller TauxAlertController
+
+Creation de la fonction showAllTauxAlert
+
+Creation de la fonction showTauxAlertInsert
+
+Creation de la fonction insertTauxAlert
+
+Creation de la fonction deleteTauxAlert
+
+Creation de la fonction updateTauxAlert
+
+Creation de la page show-TauxAlert
+
+Creation de la page insert-TauxAlert
+
+Creation de l'entite Depense
+
+Creation du controller DepenseController
+
+Creation de la fonction showAllDepense
+
+Creation de la fonction showDepenseInsert
+
+Creation de la fonction insertDepense
+
+Creation de la fonction deleteDepense
+
+Creation de la fonction updateDepense
+
+Creation de la page show-depense
+
+Creation de la page insert-depense
+
+Ajout de l'attribut budget 
+
+
