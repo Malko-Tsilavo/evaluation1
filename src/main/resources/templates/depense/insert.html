@@ -95,7 +95,8 @@
                     <h3>Attention</h3>
                     <p id="modalMessage">Le montant restant du budget a atteint ou est inférieur à un seuil. Voulez-vous continuer ?</p>
                     <button id="confirmModalButton" onclick="confirmAction()">Exécuter</button>
-                    <button onclick="closeModal()">Annuler</button>
+                    <button id="cancelModalButton">Annuler</button>
+
 
                 </div>
             </div>
@@ -112,6 +113,7 @@
     document.addEventListener('DOMContentLoaded', function () {
         const form = document.getElementById('depenseForm');
         const confirmButton = document.getElementById('confirmButton');
+        const cancelModalButton = document.getElementById('cancelModalButton');
     
         let pendingSubmission = false;
     
@@ -121,6 +123,11 @@
                 event.preventDefault(); // Bloquer la soumission initiale
                 checkBudgetAndSubmit();
             }
+        });
+
+        // Gestion du bouton "Annuler" de la modal
+        cancelModalButton.addEventListener('click', function () {
+            closeModal();
         });
     
         // Fonction pour afficher la modal
@@ -170,8 +177,10 @@
                 const montantRestant = selectedBudget.montantRestant;
                 const seuil = selectedBudget.montant * tauxValue / 100;
                 const montantRestantApres = montantRestant - montantUtilisateur;
-        
-                if (montantRestantApres <= seuil) {
+                if (montantRestantApres < 0) {
+                    showModal(`⚠️ Attention: Le montant restant du budget est inférieur à 0. Voulez-vous quand même continuer ?`);
+                }
+                else if (montantRestantApres <= seuil) {
                     showModal(`⚠️ Attention: Le montant restant du budget est inférieur à ${seuil.toFixed(2)}. Voulez-vous quand même continuer ?`);
                 } else {
                     showModal(`✅ Le montant restant est suffisant. La soumission se fera automatiquement.`, false);
@@ -183,6 +192,7 @@
         }
     });
 </script>
+
             
 
 
