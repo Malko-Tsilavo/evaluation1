@@ -36,12 +36,12 @@
                                 <div class="input-group">
                                     <input type="number" class="form-control" id="montant" name="montant" step="0.01" required>
                                 </div>
-
+                            
                                 <label for="dateDepense" class="m-t-20">Date de la Dépense:</label>
                                 <div class="input-group">
                                     <input type="datetime-local" class="form-control" id="dateDepense" name="dateDepense" required>
                                 </div>
-
+                            
                                 <label for="ticket" class="m-t-20">Ticket (Optionnel):</label>
                                 <div class="input-group">
                                     <select class="form-control" id="ticket" name="ticketId">
@@ -52,7 +52,7 @@
                                         </option>
                                     </select>
                                 </div>
-
+                            
                                 <label for="lead" class="m-t-20">Lead (Optionnel):</label>
                                 <div class="input-group">
                                     <select class="form-control" id="lead" name="leadId">
@@ -63,7 +63,7 @@
                                         </option>
                                     </select>
                                 </div>
-
+                            
                                 <label for="budget" class="m-t-20">Budget:</label>
                                 <div class="input-group">
                                     <select class="form-control" id="budgetId" name="budgetId" required>
@@ -73,16 +73,16 @@
                                         </option>
                                     </select>
                                 </div>
-
+                            
                                 <label for="taux" class="m-t-20">Taux d'Alerte Actuel:</label>
                                 <div class="input-group">
                                     <input type="text" class="form-control" id="taux" th:value="${taux.taux}" readonly>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary m-t-20">Enregistrer</button>
+                            
+                                <button type="button" class="btn btn-primary m-t-20" onclick="checkBudgetAndSubmit()">Enregistrer</button>
                                 <a th:href="@{/depenses}" class="btn btn-secondary m-t-20">Annuler</a>
                             </form>
-
+                            
                         </div>
                     </div>
                 </div>
@@ -94,6 +94,49 @@
 
     <div th:insert="~{/general/footer.html}"></div>
 </div>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function checkBudgetAndSubmit() {
+        // Récupérer les éléments du formulaire
+        const montantInput = document.getElementById('montant');
+        const tauxInput = document.getElementById('taux');
+        const budgetSelect = document.getElementById('budgetId');
+        const form = document.querySelector('form'); // Sélectionner le formulaire
+
+        // Récupérer les valeurs depuis Thymeleaf (en injectant dans le modèle)
+        const tauxValue = /*[[${taux.taux}]]*/ 0; // Taux d'alerte
+        const budgets = /*[[${budgets}]]*/ []; // Liste des budgets envoyée par le modèle
+
+        let montantRestant = 0;
+        const selectedBudgetId = budgetSelect.value;
+        const selectedBudget = budgets.find(b => b.id == selectedBudgetId);
+
+        if (selectedBudget) {
+            // Récupérer le montant restant du budget
+            montantRestant = selectedBudget.montantRestant;
+
+            // Calculer le seuil basé sur le budget et le taux
+            const seuil = selectedBudget.montant * tauxValue / 100;
+
+            // Récupérer le montant saisi par l'utilisateur
+            const montantUtilisateur = parseFloat(montantInput.value);
+
+            // Calculer le montant restant après la saisie de la dépense
+            const montantRestantApres = montantRestant - montantUtilisateur;
+
+            // Vérifier si le montant restant atteint ou dépasse le seuil
+            if (montantRestantApres <= seuil) {
+                // Afficher l'alerte
+                alert(`Attention: Le montant restant du budget a atteint ou est inférieur à ${seuil.toFixed(2)} après votre saisie.`);
+                return; // Si l'alerte est déclenchée, on ne soumet pas le formulaire
+            }
+        }
+
+        // Si tout va bien, soumettre le formulaire
+        form.submit();
+    }
+    /*]]>*/
+</script>
 
 <script th:src="@{/js/library/jquery-3.2.1.min.js}" type="text/javascript"></script>
 <script th:src="@{/js/library/popper.min.js}" type="text/javascript"></script>
