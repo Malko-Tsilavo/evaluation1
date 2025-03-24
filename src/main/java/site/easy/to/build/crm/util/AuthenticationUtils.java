@@ -1,13 +1,14 @@
 package site.easy.to.build.crm.util;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Component;
+
 import site.easy.to.build.crm.entity.CustomerLoginInfo;
 import site.easy.to.build.crm.entity.OAuthUser;
 import site.easy.to.build.crm.entity.User;
@@ -25,7 +26,6 @@ public class AuthenticationUtils {
     private final UserDetailsService crmUserDetails;
     private final UserDetailsService customerUserDetails;
 
-    @Autowired
     public AuthenticationUtils(UserService userService, OAuthUserService oAuthUserService, CustomerLoginInfoService customerLoginInfoService,
                                UserDetailsService crmUserDetails, UserDetailsService customerUserDetails) {
         this.userService = userService;
@@ -104,5 +104,17 @@ public class AuthenticationUtils {
         }
 
         return authenticatedUserDetailsService;
+    }
+
+    public User authenticate (String email, String rawPassword) {
+        User probably = userService.findByEmail(email);
+
+        if (probably != null && new BCryptPasswordEncoder().matches(rawPassword, probably.getPassword())) {
+            // Si l'utilisateur existe et que le mot de passe correspond
+            return probably;
+        }
+
+        // Si l'utilisateur n'existe pas ou que le mot de passe ne correspond pas
+        return null;
     }
 }

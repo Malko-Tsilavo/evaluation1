@@ -22,6 +22,8 @@ aucune date n'est precisé
 my-lead:Arrangement du thymeleaf <td><a th:href="${home} + 'customer/lead/' + ${lead.leadId}"><i class="fas fa-eye"></i></a></td>
 qui était comme ceci <td><a th:href="${home + 'customer/lead/' + ${lead.leadId}"><i class="fas fa-eye"></i></a></td>
 
+Existing app
+
 Creation de la table budget
 
 Creation de la table depense
@@ -82,6 +84,16 @@ Creation de la page show-depense
 
 Creation de la page insert-depense
 
-Ajout de l'attribut budget 
+Creation de la fonction de notification
+Détails: Active une notification si le budget atteint seuil
+Active aussi si le budget est dépasser
 
+New App
+Configuration de SecurityConfig dans existing app
+Detail: Configurer securityConfig pour qu'elle autorise l'utilisation
+des url de l'api rest
+
+Creation du controller AuthentificationRestController
+Détail: Controller charger de l'envoie et de la recepetion des
+données du login
 

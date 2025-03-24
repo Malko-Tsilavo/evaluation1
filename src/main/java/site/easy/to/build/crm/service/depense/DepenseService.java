@@ -7,6 +7,7 @@ import site.easy.to.build.crm.repository.DepenseRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -42,5 +43,23 @@ public class DepenseService {
 
     public List<Depense> findByBudgetId(int budgetId) {
         return depenseRepository.findByBudgetId(budgetId);
+    }
+
+    public List<Map<String, Object>> getTicketDepensesByCustomer() {
+        return depenseRepository.getTicketDepensesByCustomer();
+    }
+
+    // Récupérer les dépenses des leads par customer
+    public List<Map<String, Object>> getLeadDepensesByCustomer() {
+        return depenseRepository.getLeadDepensesByCustomer();
+    }
+
+    public List<Map<String, Object>> getDepensesByLead() {
+        return depenseRepository.getDepensesParLead();
+    }
+
+    // Récupérer les dépenses des leads par customer
+    public List<Map<String, Object>> getDepensesByTicket() {
+        return depenseRepository.getDepensesParTicket();
     }
 }
