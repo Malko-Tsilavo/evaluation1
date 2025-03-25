@@ -43,7 +43,7 @@ public class BudgetController {
 
     @PostMapping("/create")
     @Transactional
-    public String saveBudget(@RequestParam Budget budget, Model model) {
+    public String saveBudget(@ModelAttribute Budget budget, Model model) {
         budgetService.save(budget);
         return "redirect:/budget/list";
     }

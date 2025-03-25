@@ -97,3 +97,32 @@ Creation du controller AuthentificationRestController
 Détail: Controller charger de l'envoie et de la recepetion des
 données du login
 
+Creation de la fonction getTotalDepenseTicket
+Details:Fonction recuperant la somme de tous les depenses pour un ticket
+
+Creation de la fonction getTotalDepenseLead
+Details:Fonction recuperant la somme de tous les depenses pour un ticket
+
+Ajout d'un lien details lead 
+Details:Ce lien aura pour valeur les données retourné par
+localhost:8080/api/depenses/total_ticket
+
+Ajout d'un lien details lead 
+Details:Ce lien aura pour valeur les données retourné par
+localhost:8080/api/depenses/total_lead
+
+Creation de la fonction getAllDepenseLead
+Details:Fonction qui recuperera tout les depenses dont le lead est different de null
+
+Creation de la fonction getAllDepenseTicket
+Details:Fonction qui recuperera tout les depenses dont le ticket est different de null
+
+Creation de la fonction modifMontantDepense
+Details:La fonction permettra de modifier le montant d'une depense en prenant comme
+paramètre le nouveau montant et l'id de la depense
+
+Creation de la fonction modifTauxAlerte
+Details:La fonction permettra de modifier le taux d'une alerte en prenant comme
+paramètre la nouvelle valeur du paramètre
+
+

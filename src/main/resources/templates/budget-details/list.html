@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <div th:insert="~{/general/head.html}"></div>
+    <link th:href="@{/css/style.min.css}" rel="stylesheet">
+</head>
+
+<body class="skin-blue fixed-layout">
+<div id="main-wrapper">
+    <div th:insert="~{/general/header.html}"></div>
+    <div th:insert="~{/general/left-sidebar.html}"></div>
+
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Liste des détails de budget</h4>
+                            <a th:href="@{'/budget-details/create/' + ${budgetId}}" class="btn btn-success mb-3">Ajouter un détail</a>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Montant</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="detail : ${budgetDetails}">
+                                            <td th:text="${detail.id}"></td>
+                                            <td th:text="${detail.montant}"></td>
+                                            <td>
+                                                <a th:href="@{'/budget-details/delete/' + ${detail.id} + '/' + ${budgetId}}" 
+                                                   class="btn btn-danger btn-sm">Supprimer</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <a th:href="@{/budget/list}" class="btn btn-primary mt-3">Retour à la liste des budgets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:insert="~{/general/footer.html}"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -497,13 +497,29 @@ CREATE TABLE IF NOT EXISTS `google_drive_file` (
 
 CREATE TABLE IF NOT EXISTS `budget`(
    budget_id INT AUTO_INCREMENT,
-   date_creation DATETIME,
    montant DECIMAL(15,2)  ,
    name VARCHAR(50) ,
    montant_restant DECIMAL(15,2)  ,
    customer_id INT UNSIGNED NOT NULL,
    PRIMARY KEY(budget_id),
    FOREIGN KEY(customer_id) REFERENCES customer(customer_id)
+);
+
+CREATE TABLE IF NOT EXISTS `budget`(
+   budget_id INT AUTO_INCREMENT,
+   montant DECIMAL(15,2)  ,
+   montant_restant DECIMAL(15,2)  ,
+   customer_id INT UNSIGNED NOT NULL,
+   PRIMARY KEY(budget_id),
+   FOREIGN KEY(customer_id) REFERENCES customer(customer_id)
+);
+
+CREATE TABLE IF NOT EXISTS `budget-details`(
+   budget_details_id INT AUTO_INCREMENT,
+   montant DECIMAL(15,2)  ,
+   budget_id INT NOT NULL,
+   PRIMARY KEY(budget_details_id),
+   FOREIGN KEY(budget_id) REFERENCES budget(budget_id)
 );
 
 

@@ -62,4 +62,20 @@ public class DepenseService {
     public List<Map<String, Object>> getDepensesByTicket() {
         return depenseRepository.getDepensesParTicket();
     }
+
+    public List<Depense> getAllDepenseLead() {
+        return depenseRepository.getAllDepenseLead();
+    }
+
+    public List<Depense> getAllDepenseTicket() {
+        return depenseRepository.getAllDepenseTicket();
+    }
+
+    public Double getTotalDepenseTicket() {
+        return depenseRepository.getTotalDepenseTicket();
+    }
+
+    public Double getTotalDepenseLead() {
+        return depenseRepository.getTotalDepenseLead();
+    }
 }

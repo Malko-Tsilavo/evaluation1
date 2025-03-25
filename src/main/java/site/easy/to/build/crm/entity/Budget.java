@@ -14,9 +14,6 @@ public class Budget {
     @Column(name = "budget_id")
     private int id;
 
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "date_creation")
     private LocalDateTime dateCreation;
 
@@ -62,13 +59,6 @@ public class Budget {
         if (this.montantRestant == null) {
             this.montantRestant = montant;
         }
-    }
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Double getMontantRestant() {
