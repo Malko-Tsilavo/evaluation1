@@ -160,4 +160,28 @@ public class ApiDepenseController {
             return dto;
         }).collect(Collectors.toList());
     }
+
+    @GetMapping("/budgets-par-customer")
+    public ResponseEntity<List<Map<String, Object>>> getBudgetMontantsParCustomer() {
+        return ResponseEntity.ok(depenseService.getBudgetMontantsParCustomer());
+    }
+
+    // Endpoint pour les montants des dépenses par customer
+    @GetMapping("/depenses-par-customer")
+    public ResponseEntity<List<Map<String, Object>>> getDepenseMontantsParCustomer() {
+        return ResponseEntity.ok(depenseService.getDepenseMontantsParCustomer());
+    }
+
+    // Endpoint pour les totaux des montants tickets et leads
+    @GetMapping("/total-tickets-leads")
+    public ResponseEntity<Map<String, Double>> getTotalMontantsTicketsEtLeads() {
+        return ResponseEntity.ok(depenseService.getTotalMontantsTicketsEtLeads());
+    }
+
+    @GetMapping("/budget-par-lead")
+    public ResponseEntity<List<Map<String, Object>>> getBudgetMontantsParLead() {
+        List<Map<String, Object>> result = depenseService.getBudgetMontantsParLead();
+        return ResponseEntity.ok(result);
+    }
+
 }

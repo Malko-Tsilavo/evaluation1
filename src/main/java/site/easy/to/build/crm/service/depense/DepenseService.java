@@ -78,4 +78,30 @@ public class DepenseService {
     public Double getTotalDepenseLead() {
         return depenseRepository.getTotalDepenseLead();
     }
+
+    // Récupérer les montants des budgets par customer
+    public List<Map<String, Object>> getBudgetMontantsParCustomer() {
+        return depenseRepository.getBudgetMontantsParCustomer();
+    }
+
+    // Récupérer les montants des dépenses par customer
+    public List<Map<String, Object>> getDepenseMontantsParCustomer() {
+        return depenseRepository.getDepenseMontantsParCustomer();
+    }
+
+    // Récupérer les montants totaux pour les tickets et les leads
+    public Map<String, Double> getTotalMontantsTicketsEtLeads() {
+        Double totalTickets = depenseRepository.getTotalDepenseTicket();
+        Double totalLeads = depenseRepository.getTotalDepenseLead();
+        
+        return Map.of(
+            "totalTickets", totalTickets != null ? totalTickets : 0.0,
+            "totalLeads", totalLeads != null ? totalLeads : 0.0
+        );
+    }
+
+     // Méthode pour récupérer la somme des montants des budgets par lead
+     public List<Map<String, Object>> getBudgetMontantsParLead() {
+        return depenseRepository.findTotalBudgetByLead();
+    }
 }

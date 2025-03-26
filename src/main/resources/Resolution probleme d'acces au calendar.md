@@ -103,19 +103,22 @@ Details:Fonction recuperant la somme de tous les depenses pour un ticket
 Creation de la fonction getTotalDepenseLead
 Details:Fonction recuperant la somme de tous les depenses pour un ticket
 
-Ajout d'un lien details lead 
+Ajout d'un bouton details lead 
 Details:Ce lien aura pour valeur les données retourné par
 localhost:8080/api/depenses/total_ticket
 
 Ajout d'un lien details lead 
 Details:Ce lien aura pour valeur les données retourné par
-localhost:8080/api/depenses/total_lead
+avec localhost:8080/api/depenses/total_lead d'ou nous prenons le total
+des 
 
 Creation de la fonction getAllDepenseLead
 Details:Fonction qui recuperera tout les depenses dont le lead est different de null
+avec l'url http://localhost:8080/api/depenses/par-lead
 
 Creation de la fonction getAllDepenseTicket
 Details:Fonction qui recuperera tout les depenses dont le ticket est different de null
+avec l'url http://localhost:8080/api/depenses/par-ticket
 
 Creation de la fonction modifMontantDepense
 Details:La fonction permettra de modifier le montant d'une depense en prenant comme
@@ -125,4 +128,7 @@ Creation de la fonction modifTauxAlerte
 Details:La fonction permettra de modifier le taux d'une alerte en prenant comme
 paramètre la nouvelle valeur du paramètre
 
+Creation du formulaire de modification Taux
+Details:Le formulaire envoie les données dans un controller de NewApp qui va passer à springboot
+pour se charger de la modification
 

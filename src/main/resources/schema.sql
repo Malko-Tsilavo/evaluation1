@@ -535,6 +535,8 @@ CREATE TABLE IF NOT EXISTS `depense`(
    FOREIGN KEY(budget_id) REFERENCES budget(budget_id),
    FOREIGN KEY(lead_id) REFERENCES trigger_lead(lead_id)
 );
+ALTER TABLE `depense`
+MODIFY COLUMN `budget_id` INT NULL;
 
 CREATE TABLE IF NOT EXISTS `taux_alerte`(
    id_taux_alert INT AUTO_INCREMENT,

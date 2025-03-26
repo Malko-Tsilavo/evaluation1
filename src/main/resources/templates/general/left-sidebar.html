@@ -39,7 +39,7 @@
                                 <li><a th:href="${home + 'employee/settings/email/contract'}">Contract settings</a></li>
                                 <li><a th:href="${home + 'employee/settings/email/lead'}">Lead Settings</a></li>
                                 <li><a th:href="${home + 'employee/settings/email/ticket'}">Ticket Settings</a></li>
-                                <li><a th:href="${home + 'import/csv'}">Importation</a></li>
+                                
                                 
                             </ul>
                         </li>
@@ -105,6 +105,7 @@
                         <span class="hide-menu">Customers</span>
                     </a>
                     <ul class="collapse">
+                        <li><a th:href="${home + 'csv/create'}">Importation</a></li>
                         <li><a th:if="${#authorization.expression('hasRole(''ROLE_MANAGER'')')}" th:href="${home + 'employee/customer/manager/all-customers'}">All customers</a></li>
                         <li><a th:href="${home + 'employee/customer/my-customers'}">My customers</a></li>
                         <li><a th:href="${home + 'employee/customer/create-customer'}">Create customer</a></li>

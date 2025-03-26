@@ -14,9 +14,6 @@ public class Budget {
     @Column(name = "budget_id")
     private int id;
 
-    @Column(name = "date_creation")
-    private LocalDateTime dateCreation;
-
     @Column(name = "montant")
     private Double montant;
 
@@ -33,15 +30,6 @@ public class Budget {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
-    }
-
-    public LocalDateTime getDateCreation() {
-        return dateCreation;
-    }
-    
-
-    public void setDateCreation(LocalDateTime dateCreation) {
-        this.dateCreation = dateCreation;
     }
 
     public int getId() {

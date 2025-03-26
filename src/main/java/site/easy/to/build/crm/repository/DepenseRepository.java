@@ -62,4 +62,40 @@ public interface DepenseRepository extends JpaRepository<Depense, Integer> {
        @Query("SELECT SUM(d.montant) FROM Depense d WHERE d.lead IS NOT NULL")
        Double getTotalDepenseLead();
 
+       @Query("SELECT b.customer.id AS customerId, SUM(b.montant) AS totalBudgets " +
+                     "FROM Budget b " +
+                     "GROUP BY b.customer.id")
+       List<Map<String, Object>> getBudgetAmountByCustomer();
+
+       @Query("SELECT b.customer.id AS customerId, SUM(d.montant) AS totalDepenses " +
+                     "FROM Depense d " +
+                     "JOIN d.budget b " +
+                     "GROUP BY b.customer.id")
+       List<Map<String, Object>> getDepenseAmountByCustomer();
+
+       @Query("SELECT SUM(d.montant) AS totalTickets FROM Depense d WHERE d.ticket IS NOT NULL")
+       Double getTotalTicketAmount();
+
+       @Query("SELECT SUM(d.montant) AS totalLeads FROM Depense d WHERE d.lead IS NOT NULL")
+       Double getTotalLeadAmount();
+
+       @Query("SELECT c.id AS customerId, SUM(b.montant) AS totalBudgets " +
+                     "FROM Budget b " +
+                     "JOIN b.customer c " +
+                     "GROUP BY c.id")
+       List<Map<String, Object>> getBudgetMontantsParCustomer();
+
+       @Query("SELECT c.id AS customerId, SUM(d.montant) AS totalDepenses " +
+                     "FROM Depense d " +
+                     "JOIN d.budget b " +
+                     "JOIN b.customer c " +
+                     "GROUP BY c.id")
+       List<Map<String, Object>> getDepenseMontantsParCustomer();
+
+       @Query("SELECT d.lead.id AS leadId, SUM(b.montant) AS totalBudget " +
+                     "FROM Depense d " +
+                     "JOIN Budget b ON d.budget.id = b.id " +
+                     "GROUP BY d.lead.id")
+       List<Map<String, Object>> findTotalBudgetByLead();
+
 }
